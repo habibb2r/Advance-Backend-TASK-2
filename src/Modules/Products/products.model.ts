@@ -1,5 +1,5 @@
-import { Schema } from 'mongoose';
-import { TProduct } from './products.interface';
+import { model, Schema } from 'mongoose';
+import { ProductModel, TProduct } from './products.interface';
 
 const ProductSchema = new Schema<TProduct>({
   name: { type: String, trim: true, maxlength: [30, 'Product name must be at most 30 characters'], required: [true, 'Product name is required'] },
@@ -25,3 +25,6 @@ const ProductSchema = new Schema<TProduct>({
   inStock: { type: Boolean, default: true },
   isDeleted: { type: Boolean, default: false },
 });
+
+
+export const Product = model<TProduct, ProductModel>('Product', ProductSchema)

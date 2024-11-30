@@ -1,3 +1,4 @@
+import { Model } from "mongoose";
 
 
 export type TProduct = {
@@ -17,3 +18,5 @@ export type TOrder ={
     quantity: number;
     totalPrice: number;
 }
+
+export type ProductModel = Model<TProduct>
