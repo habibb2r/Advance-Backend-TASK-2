@@ -24,7 +24,8 @@ const ProductSchema = new Schema<TProduct>({
   },
   inStock: { type: Boolean, default: true },
   isDeleted: { type: Boolean, default: false },
-});
+},
+{ timestamps: true });
 
 
 export const Product = model<TProduct, ProductModel>('Product', ProductSchema)
