@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./products.service";
 import ProductValidation from "./products.validation";
+import mongoose from "mongoose";
 
 
 
@@ -113,7 +114,7 @@ const updateSpecificProduct = async(req: Request, res: Response)=>{
 
 const deleteSpecificProduct = async(req: Request, res: Response)=>{
     try{
-        const productId = req.params.productId;
+        const productId = req.params.productId
         const result = await ProductServices.deleteSpecificProductFromDB(productId)
         res.status(202).json({
             message: "Bike deleted successfully",
