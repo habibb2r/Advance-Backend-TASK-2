@@ -10,6 +10,8 @@ export type TProduct = {
     quantity: number;
     inStock : boolean;
     isDeleted : boolean;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 
 export type TOrder ={
