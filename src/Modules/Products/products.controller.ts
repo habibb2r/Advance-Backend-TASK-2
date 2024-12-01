@@ -58,9 +58,29 @@ const getAllProducts = async(req: Request, res: Response)=>{
     }
 }
 
+const getSpecificProduct = async(req: Request, res: Response)=>{
+    try{
+        const productId = req.params.productId;
+        const result = await ProductServices.getSpecificProductFromDB(productId)
+        res.status(202).json({
+            message: "Bike retrieved successfully",
+            success: true,
+            data: result
+        });
+    }catch(error: any){
+        res.status(500).json({
+            message: error.message || 'Something went wrong',
+            success: false,
+            error: error
+        })
+           
+    }
+}
+
 
 export const ProductController = {
     createProduct,
     getAllProducts,
-    
+    getSpecificProduct
+
 }
