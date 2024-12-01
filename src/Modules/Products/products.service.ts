@@ -1,6 +1,6 @@
 import { TProduct } from './products.interface';
 import { Product } from './products.model';
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const createProductIntoDB = async (productData: TProduct) => {
   const product = new Product(productData);
@@ -27,15 +27,30 @@ const getAllProductsFromDB = async (searchTerm: string) => {
   }
 };
 
-
-const getSpecificProductFromDB = async(productId: string) => {
-    let ObajectId = mongoose.Types.ObjectId
-    const result = await Product.findOne({ _id: new ObajectId(productId) }, { isDeleted: 0, __v: 0 });
-    return result
-}
+const getSpecificProductFromDB = async (productId: string) => {
+  let ObajectId = mongoose.Types.ObjectId;
+  const result = await Product.findOne(
+    { _id: new ObajectId(productId) },
+    { isDeleted: 0, __v: 0 },
+  );
+  return result;
+};
+const updateSpecificProductFromDB = async (
+  productId: string,
+  updateData: Partial<TProduct>,
+) => {
+  let ObajectId = mongoose.Types.ObjectId;
+  const result = await Product.findOneAndUpdate(
+    { _id: new ObajectId(productId) },
+    updateData,
+    { new: true, runValidators: true },
+  ).select('_id name brand price category description quantity inStock createdAt updatedAt');
+  return result;
+};
 
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
-  getSpecificProductFromDB
+  getSpecificProductFromDB,
+  updateSpecificProductFromDB,
 };
