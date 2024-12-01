@@ -9,6 +9,7 @@ router.post('/', ProductController.createProduct)
 router.get('/', ProductController.getAllProducts)
 router.get('/:productId', ProductController.getSpecificProduct)
 router.put('/:productId', ProductController.updateSpecificProduct)
+router.delete('/:productId', ProductController.deleteSpecificProduct)
 
 
 export const ProductRoutes = router

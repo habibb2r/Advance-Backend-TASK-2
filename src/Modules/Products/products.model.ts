@@ -28,4 +28,22 @@ const ProductSchema = new Schema<TProduct>({
 { timestamps: true });
 
 
+ProductSchema.pre('find',  function (next) {
+  this.find({isDeleted: { $ne: true }})
+  next();
+
+})
+ProductSchema.pre('findOne',  function (next) {
+  this.find({isDeleted: { $ne: true }})
+  next();
+})
+ProductSchema.pre('findOneAndUpdate',  function (next) {
+  this.find({isDeleted: { $ne: true }})
+  next();
+
+})
+
+
+
+
 export const Product = model<TProduct, ProductModel>('Product', ProductSchema)

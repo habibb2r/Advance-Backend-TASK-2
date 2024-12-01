@@ -35,6 +35,7 @@ const getSpecificProductFromDB = async (productId: string) => {
   );
   return result;
 };
+
 const updateSpecificProductFromDB = async (
   productId: string,
   updateData: Partial<TProduct>,
@@ -44,13 +45,30 @@ const updateSpecificProductFromDB = async (
     { _id: new ObajectId(productId) },
     updateData,
     { new: true, runValidators: true },
-  ).select('_id name brand price category description quantity inStock createdAt updatedAt');
+  )
   return result;
 };
+
+const deleteSpecificProductFromDB = async (productId: string) => {
+    let ObajectId = mongoose.Types.ObjectId;
+    const checkDeleted = await Product.findOne({ _id: new ObajectId(productId), isDeleted: false})
+      
+      if(checkDeleted){
+        const result = await Product.updateOne({ _id: new ObajectId(productId), isDeleted: false},{ isDeleted: true}, { new: true, runValidators: true });
+        return result;
+      }else{
+        throw new Error("Resource not found");
+      }
+      
+    
+  };
+
+
 
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
   getSpecificProductFromDB,
   updateSpecificProductFromDB,
+  deleteSpecificProductFromDB
 };

@@ -21,4 +21,5 @@ export type TOrder ={
     totalPrice: number;
 }
 
+
 export type ProductModel = Model<TProduct>

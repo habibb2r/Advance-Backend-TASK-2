@@ -5,6 +5,7 @@ import ProductValidation from "./products.validation";
 
 
 
+
 const createProduct = async( req: Request, res: Response)=>{
     try{
         const productData = req.body;
@@ -29,9 +30,10 @@ const createProduct = async( req: Request, res: Response)=>{
         });
     }catch(error: any){
         res.status(500).json({
-            message: error.message || 'Something went wrong',
+            message: error.name == 'ZodError' ? 'Validation error' : 'Something went wrong',
             success: false,
-            error: error
+            error: error.issues,
+            stack: error.stack.split('\n')
         })
            
     }
@@ -80,7 +82,7 @@ const updateSpecificProduct = async(req: Request, res: Response)=>{
     try{
         const productId = req.params.productId;
         const updateProductData = req.body
-        const result = await ProductServices.updateSpecificProductFromDB(productId, updateProductData)
+        const result : any = await ProductServices.updateSpecificProductFromDB(productId, updateProductData)
         const data = {
             _id: result._id,
             name: result.name,
@@ -109,10 +111,31 @@ const updateSpecificProduct = async(req: Request, res: Response)=>{
 }
 
 
+const deleteSpecificProduct = async(req: Request, res: Response)=>{
+    try{
+        const productId = req.params.productId;
+        const result = await ProductServices.deleteSpecificProductFromDB(productId)
+        res.status(202).json({
+            message: "Bike deleted successfully",
+            success: true,
+            data: result
+        });
+    }catch(error: any){
+        res.status(500).json({
+            message: error.message || 'Something went wrong',
+            success: false,
+            error: error
+        })
+           
+    }
+}
+
+
 export const ProductController = {
     createProduct,
     getAllProducts,
     getSpecificProduct,
-    updateSpecificProduct
+    updateSpecificProduct,
+    deleteSpecificProduct
 
 }
