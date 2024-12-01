@@ -10,7 +10,21 @@ const createProductIntoDB = async ( productData: TProduct) =>{
     return result;
 }
 
+const getAllProductsFromDB = async(searchTerm: string)=>{
+    if(searchTerm){
+        const result = await Product.find({$or:[{name: new RegExp(searchTerm, 'i')}, {category: new RegExp(searchTerm, 'i')}, {brand: new RegExp(searchTerm, 'i')}]}, {isDeleted: 0, __v: 0})
+        return result;
+
+    }else{
+        const result = await Product.find({}, {isDeleted: 0, __v: 0})
+        return result;
+    }
+
+    
+}
+
 
 export const ProductServices = {
-    createProductIntoDB
+    createProductIntoDB,
+    getAllProductsFromDB
 }

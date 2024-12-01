@@ -38,6 +38,29 @@ const createProduct = async( req: Request, res: Response)=>{
 }
 
 
+
+const getAllProducts = async(req: Request, res: Response)=>{
+    try{
+        const searchTerm = req.query.searchTerm as string;
+        const result = await ProductServices.getAllProductsFromDB(searchTerm)
+        res.status(202).json({
+            message: "Bikes retrieved successfully",
+            success: true,
+            data: result
+        });
+    }catch(error: any){
+        res.status(500).json({
+            message: error.message || 'Something went wrong',
+            success: false,
+            error: error
+        })
+           
+    }
+}
+
+
 export const ProductController = {
-    createProduct
+    createProduct,
+    getAllProducts,
+    
 }
