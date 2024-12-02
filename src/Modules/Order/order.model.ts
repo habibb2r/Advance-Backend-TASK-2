@@ -1,4 +1,4 @@
-import {model, Schema} from 'mongoose';
+import { model, Schema } from 'mongoose';
 import { OrderModel, TOrder } from './order.interface';
 
 const orderSchema = new Schema(
@@ -12,7 +12,6 @@ const orderSchema = new Schema(
     product: {
       type: Schema.Types.ObjectId,
       required: true,
-    //   ref: 'Product',
     },
     quantity: {
       type: Number,
@@ -26,7 +25,7 @@ const orderSchema = new Schema(
     },
   },
   {
-    timestamps: true, 
+    timestamps: true,
   },
 );
 

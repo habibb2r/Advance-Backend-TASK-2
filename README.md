@@ -14,12 +14,12 @@ Goal: Use TypeScript as the programming language to create a Node.js Express app
 - Feature 6: Create a BIKE Order.
 - Feature 7: Get revenue from all orders.
 
+## Live Server
 
-## Live Server 
- ```bash
-   https://advance-backend-task-2-habibb2r.vercel.app/
+```bash
+  https://advance-backend-task-2-habibb2r.vercel.app/
 
-   ```
+```
 
 ## Installation
 
@@ -51,8 +51,9 @@ Goal: Use TypeScript as the programming language to create a Node.js Express app
   NODE_ENV = development
   PORT = 5000
   DB_URL=mongodb://localhost:27017
-  
+
 ```
+
 `
 
 ## API Reference
@@ -103,6 +104,7 @@ Goal: Use TypeScript as the programming language to create a Node.js Express app
 ```http
   GET /api/products
 ```
+
 ```http
   GET /api/products?searchTerm=category. searchTerm can be name, brand, or category.
 ```
@@ -212,7 +214,6 @@ Goal: Use TypeScript as the programming language to create a Node.js Express app
 
 #### 6. Order a Bike
 
-
 ```http
   POST /api/orders
 ```
@@ -245,13 +246,12 @@ Goal: Use TypeScript as the programming language to create a Node.js Express app
   }
 }
 ```
-#### 7. Calculate Revenue from Orders (Aggregation)
 
+#### 7. Calculate Revenue from Orders (Aggregation)
 
 ```http
   GET /api/orders/revenue
 ```
-
 
 - Response:
 
@@ -264,5 +264,3 @@ Goal: Use TypeScript as the programming language to create a Node.js Express app
   }
 }
 ```
-
- 

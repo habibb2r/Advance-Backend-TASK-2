@@ -1,4 +1,3 @@
-
 import { TProduct } from './products.interface';
 import { Product } from './products.model';
 import mongoose from 'mongoose';
@@ -28,7 +27,9 @@ const getAllProductsFromDB = async (searchTerm: string) => {
   }
 };
 
-const getSpecificProductFromDB = async (productId: mongoose.Types.ObjectId | string) => {
+const getSpecificProductFromDB = async (
+  productId: mongoose.Types.ObjectId | string,
+) => {
   const ObajectId = mongoose.Types.ObjectId;
   const result = await Product.findOne(
     { _id: new ObajectId(productId) },
@@ -46,30 +47,35 @@ const updateSpecificProductFromDB = async (
     { _id: new ObajectId(productId) },
     updateData,
     { new: true, runValidators: true },
-  )
+  );
   return result;
 };
 
-const deleteSpecificProductFromDB = async (productId: mongoose.Types.ObjectId | string) => {
-    const ObajectId = mongoose.Types.ObjectId;
-    const checkDeleted = await Product.findOne({ _id: new ObajectId(productId), isDeleted: false})
-      
-      if(checkDeleted){
-        const result = await Product.updateOne({ _id: new ObajectId(productId), isDeleted: false},{ isDeleted: true}, { new: true, runValidators: true });
-        return result;
-      }else{
-        throw new Error("Resource not found");
-      }
-      
-    
-  };
+const deleteSpecificProductFromDB = async (
+  productId: mongoose.Types.ObjectId | string,
+) => {
+  const ObajectId = mongoose.Types.ObjectId;
+  const checkDeleted = await Product.findOne({
+    _id: new ObajectId(productId),
+    isDeleted: false,
+  });
 
-
+  if (checkDeleted) {
+    const result = await Product.updateOne(
+      { _id: new ObajectId(productId), isDeleted: false },
+      { isDeleted: true },
+      { new: true, runValidators: true },
+    );
+    return result;
+  } else {
+    throw new Error('Resource not found');
+  }
+};
 
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
   getSpecificProductFromDB,
   updateSpecificProductFromDB,
-  deleteSpecificProductFromDB
+  deleteSpecificProductFromDB,
 };
