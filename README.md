@@ -4,7 +4,7 @@
 
 Goal: Use TypeScript as the programming language to create a Node.js Express application that integrates MongoDB and Mongoose for managing bike orders and stores. Make sure data integrity is maintained by using Zod for validation.
 
-## Features
+## Application Features
 
 - Feature 1: Create a BIKE.
 - Feature 2: Get all BIKES.
