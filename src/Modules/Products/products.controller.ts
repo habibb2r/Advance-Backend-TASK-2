@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./products.service";
 import ProductValidation from "./products.validation";
-import mongoose from "mongoose";
+
 
 
 

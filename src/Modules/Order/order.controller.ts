@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { OrderServices } from "./order.service";
 import OrderValidation from "./order.validation";
 
+
 const createOrder = async(req: Request, res: Response)=>{
     try{
         const order = req.body;

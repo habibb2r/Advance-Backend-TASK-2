@@ -1,4 +1,4 @@
-import { string } from 'zod';
+
 import { TProduct } from './products.interface';
 import { Product } from './products.model';
 import mongoose from 'mongoose';
@@ -29,7 +29,7 @@ const getAllProductsFromDB = async (searchTerm: string) => {
 };
 
 const getSpecificProductFromDB = async (productId: mongoose.Types.ObjectId | string) => {
-  let ObajectId = mongoose.Types.ObjectId;
+  const ObajectId = mongoose.Types.ObjectId;
   const result = await Product.findOne(
     { _id: new ObajectId(productId) },
     { isDeleted: 0, __v: 0 },
@@ -41,7 +41,7 @@ const updateSpecificProductFromDB = async (
   productId: mongoose.Types.ObjectId | string,
   updateData: Partial<TProduct>,
 ) => {
-  let ObajectId = mongoose.Types.ObjectId;
+  const ObajectId = mongoose.Types.ObjectId;
   const result = await Product.findOneAndUpdate(
     { _id: new ObajectId(productId) },
     updateData,
@@ -51,7 +51,7 @@ const updateSpecificProductFromDB = async (
 };
 
 const deleteSpecificProductFromDB = async (productId: mongoose.Types.ObjectId | string) => {
-    let ObajectId = mongoose.Types.ObjectId;
+    const ObajectId = mongoose.Types.ObjectId;
     const checkDeleted = await Product.findOne({ _id: new ObajectId(productId), isDeleted: false})
       
       if(checkDeleted){
