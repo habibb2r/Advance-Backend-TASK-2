@@ -48,9 +48,9 @@ Goal: Use TypeScript as the programming language to create a Node.js Express app
 ## DotENV Configuration
 
 ```bash
-  Node_env = development
-  Port = 5000
-  DBURL=mongodb://localhost:27017
+  NODE_ENV = development
+  PORT = 5000
+  DB_URL=mongodb://localhost:27017
   
 ```
 `
