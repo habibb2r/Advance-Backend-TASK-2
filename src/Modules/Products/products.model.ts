@@ -46,4 +46,5 @@ ProductSchema.pre('findOneAndUpdate',  function (next) {
 
 
 
+
 export const Product = model<TProduct, ProductModel>('Product', ProductSchema)
