@@ -24,6 +24,7 @@ const createProduct = async (req: Request, res: Response) => {
       success: true,
       data: data,
     });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res.status(500).json({
       message:
@@ -44,6 +45,7 @@ const getAllProducts = async (req: Request, res: Response) => {
       success: true,
       data: result,
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res.status(500).json({
       message: error.message || 'Something went wrong',
@@ -62,6 +64,7 @@ const getSpecificProduct = async (req: Request, res: Response) => {
       success: true,
       data: result,
     });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res.status(500).json({
       message: error.message || 'Something went wrong',
@@ -74,6 +77,7 @@ const updateSpecificProduct = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
     const updateProductData = req.body;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result: any = await ProductServices.updateSpecificProductFromDB(
       productId,
       updateProductData,
@@ -95,6 +99,7 @@ const updateSpecificProduct = async (req: Request, res: Response) => {
       success: true,
       data: data,
     });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res.status(500).json({
       message: error.message || 'Something went wrong',
@@ -113,6 +118,7 @@ const deleteSpecificProduct = async (req: Request, res: Response) => {
       success: true,
       data: result,
     });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     res.status(500).json({
       message: error.message || 'Something went wrong',
